@@ -5,4 +5,5 @@
     <string name="click_to_write_new_poem">click to write new poem</string>
     <string name="poem_title_lbl">Title</string>
     <string name="poem_subject_hint">some roses are red</string>
+    <string name="poems_fragment_lbl">Collared Doves</string>
 </resources>

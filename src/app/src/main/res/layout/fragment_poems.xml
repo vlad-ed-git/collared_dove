@@ -2,6 +2,8 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.poems.PoemsFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -20,6 +22,7 @@
         android:src="@drawable/ic_feather"
         app:backgroundTint="?attr/colorPrimary"
         android:tint="?attr/colorOnPrimary"
+        app:rippleColor="@color/accent"
         android:contentDescription="@string/click_to_write_new_poem"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

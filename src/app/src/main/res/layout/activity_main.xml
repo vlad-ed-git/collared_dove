@@ -12,13 +12,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
         android:elevation="0dp"
         app:layout_collapseMode="pin"
         app:menu="@menu/poems_menu"
-        app:title="@string/app_name"
         style="@style/appToolbar" />
 
-
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_nav_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav"/>
 
 </LinearLayout>
