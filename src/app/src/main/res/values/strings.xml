@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Collared Doves</string>
+    <string name="most_recent_txt">Most Recent</string>
+    <string name="toolbar_bg_img_desc">collared doves image</string>
+    <string name="click_to_write_new_poem">click to write new poem</string>
+    <string name="poem_title_lbl">Title</string>
+    <string name="poem_subject_hint">some roses are red</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/poem_title_lbl"
+        android:text="@string/poem_title_lbl"
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_margin="@dimen/std_space"
+        android:labelFor="@id/poem_title_et"/>
+
+    <EditText
+        android:id="@+id/poem_title_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:importantForAutofill="no"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/poem_subject_et"
+        android:padding="@dimen/std_space"
+        android:gravity="start|top"
+        android:fontFamily="@font/lateef"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:hint="@string/poem_subject_hint"
+        android:minHeight="420dp"
+        android:inputType="textMultiLine"
+        android:importantForAutofill="no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </ScrollView>
+</LinearLayout>
