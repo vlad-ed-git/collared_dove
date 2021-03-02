@@ -41,6 +41,8 @@ class PoemDetailsViewModel
         }
     }
 
+    fun getPoemForSharing()  = "${poem?.title}\n${poem?.body}"
+
     companion object {
         private val TAG = PoemDetailsViewModel::class.java.simpleName
     }

@@ -1,5 +1,6 @@
 package com.dev_vlad.collared_doves.views.poems
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -78,13 +79,27 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
         findNavController().navigate(action)
     }
 
+    private fun sharePoem(){
+       val poem = viewModel.getPoemForSharing()
+       if (poem.isNotBlank()){
+           val sendIntent: Intent = Intent().apply {
+               action = Intent.ACTION_SEND
+               putExtra(Intent.EXTRA_TEXT, poem)
+               type = "text/plain"
+           }
+
+           val shareIntent = Intent.createChooser(sendIntent, null)
+           startActivity(shareIntent)
+       }
+    }
+
     /************* MENU **************/
     private lateinit var actionToggleFav : MenuItem
     private var pendingFavStatus: Boolean? = null
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.poem_details_menu, menu)
         actionToggleFav = menu.findItem(R.id.action_toggle_fav)
-        pendingFavStatus?.let {  
+        pendingFavStatus?.let {
             pendingFavState ->
             setFavIcon(pendingFavState)
             pendingFavStatus = null
@@ -100,6 +115,11 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
 
             R.id.action_toggle_fav-> {
                 toggleIsFavorite()
+                true
+            }
+
+            R.id.action_share -> {
+                sharePoem()
                 true
             }
 

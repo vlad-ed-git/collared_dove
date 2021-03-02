@@ -11,4 +11,9 @@
         android:title="@string/toggle_fav_menu_action_txt"
         app:showAsAction="ifRoom" />
 
+    <item android:id="@+id/action_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/share_menu_action_txt"
+        app:showAsAction="ifRoom" />
+
 </menu>
