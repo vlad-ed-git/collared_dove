@@ -83,7 +83,6 @@ class MainActivity : AppCompatActivity() {
 
     //toolbar handle back navigation
     override fun onSupportNavigateUp(): Boolean {
-        MyLogger.logThis(TAG, location = "onSupportNavigateUp()", message = " -- called")
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 

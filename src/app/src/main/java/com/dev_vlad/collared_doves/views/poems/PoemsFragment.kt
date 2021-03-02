@@ -49,17 +49,7 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
             {
                 if (it != null) {
                     poemsAdapter.submitList(it)
-                    MyLogger.logThis(
-                        TAG,
-                        "observe poems",
-                        "found ${it.size} poems"
-                    )
-                } else {
-                    MyLogger.logThis(
-                        TAG,
-                        "observe poems",
-                        "poems list is null"
-                    )
+
                 }
             }
         )
