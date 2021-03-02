@@ -65,6 +65,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+                R.id.aboutAppFragment -> {
+                    binding.apply {
+                        toolbar.isVisible = false
+                    }
+                }
+
                 else -> {
                     binding.toolbar.isVisible = true
                 }

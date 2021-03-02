@@ -202,6 +202,13 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
                 return true
             }
 
+            R.id.aboutAppFragment -> {
+                //goto aboutAppFragment
+                val action = PoemsFragmentDirections.actionPoemsFragmentToAboutAppFragment()
+                findNavController().navigate(action)
+                return true
+            }
+
             else -> {
                 return super.onOptionsItemSelected(item)
             }

@@ -12,6 +12,7 @@
         android:title="@string/delete_selected_txt"
         app:showAsAction="ifRoom"/>
 
+
     <item android:id="@+id/action_show_mine"
         android:checkable="true"
         android:title="@string/show_my_poems_only_txt"
@@ -20,5 +21,9 @@
     <item android:id="@+id/action_toggle_fav"
         android:checkable="true"
         android:title="@string/show_favorites_only_txt"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/aboutAppFragment"
+        android:title="@string/fragment_about_lbl"
         app:showAsAction="never"/>
 </menu>
