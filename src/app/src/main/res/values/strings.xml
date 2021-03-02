@@ -17,4 +17,8 @@
     <string name="got_it">Got it!</string>
     <string name="body_empty_err">The poem is blank</string>
     <string name="poem_saved">Saved!</string>
+    <string name="delete_selected_txt">Delete selected</string>
+    <string name="confirm_delete_poem">Delete this poem?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

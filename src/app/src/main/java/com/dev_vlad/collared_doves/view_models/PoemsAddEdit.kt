@@ -17,7 +17,7 @@ import javax.inject.Inject
 class PoemsAddEditViewModel
 @Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
 
-    companion object{
+    companion object {
         private val TAG = PoemsAddEditViewModel::class.java.simpleName
     }
 
@@ -25,31 +25,32 @@ class PoemsAddEditViewModel
         return poemsRepo.getPoem(poemId)
     }
 
-    private var poem : Poems? = null
-    fun setEditedPoem(poem: Poems){
+    private var poem: Poems? = null
+    fun setEditedPoem(poem: Poems) {
         this.poem = poem
     }
+
     private val state = MutableStateFlow<STATE>(STATE.IDLE)
     fun getEditingState() = state.asLiveData()
     fun savePoem(title: String, body: String) {
         state.value = STATE.SAVING
         viewModelScope.launch(Dispatchers.IO) {
-            if (poem != null){
+            if (poem != null) {
                 //editing a poem
-               val editedPoem = Poems(
-                   poemId = poem!!.poemId,
-                   title = title,
-                   body = body,
-                   updated = System.currentTimeMillis(),
-                   created = poem!!.created,
-                   writtenBy = poem!!.writtenBy,
-                   isFavorite = poem!!.isFavorite
-               )
+                val editedPoem = Poems(
+                    poemId = poem!!.poemId,
+                    title = title,
+                    body = body,
+                    updated = System.currentTimeMillis(),
+                    created = poem!!.created,
+                    writtenBy = poem!!.writtenBy,
+                    isFavorite = poem!!.isFavorite
+                )
                 poemsRepo.updatePoem(editedPoem)
                 withContext(Dispatchers.Main) {
                     state.value = STATE.SAVED
                 }
-            }else {
+            } else {
 
                 val newPoem = Poems(
                     writtenBy = "1",
@@ -66,7 +67,8 @@ class PoemsAddEditViewModel
         }
     }
 }
-enum class STATE{
+
+enum class STATE {
     IDLE,
     SAVING,
     SAVED

@@ -1,7 +1,7 @@
 package com.dev_vlad.collared_doves
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
 
                 R.id.poemsFragment -> {
-                    binding.apply{
+                    binding.apply {
                         toolbar.isVisible = true
                         toolbar.title = getString(R.string.poems_fragment_lbl)
                     }
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     //toolbar handle back navigation
     override fun onSupportNavigateUp(): Boolean {
-        MyLogger.logThis(TAG, location = "onSupportNavigateUp()", message =" -- called")
+        MyLogger.logThis(TAG, location = "onSupportNavigateUp()", message = " -- called")
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 

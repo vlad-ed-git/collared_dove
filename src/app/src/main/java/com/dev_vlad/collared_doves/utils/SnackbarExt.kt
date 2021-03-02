@@ -33,8 +33,18 @@ fun View.showSnackBarToUser(
 
     //set text color
     if (isErrorMsg) {
-        mainSnackBarTxt.setTextColor(ContextCompat.getColor(this.context, R.color.design_default_color_error))
-        actionTxt.setTextColor(ContextCompat.getColor(this.context, R.color.design_default_color_error))
+        mainSnackBarTxt.setTextColor(
+            ContextCompat.getColor(
+                this.context,
+                R.color.design_default_color_error
+            )
+        )
+        actionTxt.setTextColor(
+            ContextCompat.getColor(
+                this.context,
+                R.color.design_default_color_error
+            )
+        )
     } else {
         mainSnackBarTxt.setTextColor(ContextCompat.getColor(this.context, R.color.white))
         actionTxt.setTextColor(ContextCompat.getColor(this.context, R.color.white))

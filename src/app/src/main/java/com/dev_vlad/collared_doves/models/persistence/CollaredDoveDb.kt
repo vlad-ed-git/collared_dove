@@ -13,17 +13,18 @@ import javax.inject.Provider
 
 
 const val DATABASE_NAME = "collared_dove_db"
+
 @Database(entities = [Poems::class], version = 1, exportSchema = false)
 abstract class CollaredDoveDb : RoomDatabase() {
-    abstract fun poemsDao() : PoemsDao
+    abstract fun poemsDao(): PoemsDao
 
     //default data
     //use Provide so the injection happens lazily
     class CollaredDoveDbCreateCallback
     @Inject constructor(
-        private val database : Provider<CollaredDoveDb>,
+        private val database: Provider<CollaredDoveDb>,
         @ApplicationScope private val appScope: CoroutineScope
-    ): RoomDatabase.Callback(){
+    ) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             val poemsDao = database.get().poemsDao()

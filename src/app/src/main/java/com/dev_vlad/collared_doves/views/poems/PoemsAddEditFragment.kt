@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.dev_vlad.collared_doves.R
 import com.dev_vlad.collared_doves.databinding.FragmentEditPoemBinding
 import com.dev_vlad.collared_doves.models.entities.Poems
+import com.dev_vlad.collared_doves.utils.hideKeyBoard
 import com.dev_vlad.collared_doves.utils.showSnackBarToUser
 import com.dev_vlad.collared_doves.view_models.PoemsAddEditViewModel
 import com.dev_vlad.collared_doves.view_models.STATE
@@ -20,10 +21,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
 
     private val TAG = PoemsAddEditFragment::class.java.simpleName
-    private val viewModel : PoemsAddEditViewModel by viewModels<PoemsAddEditViewModel>()
+    private val viewModel: PoemsAddEditViewModel by viewModels<PoemsAddEditViewModel>()
 
 
-    private var _binding : FragmentEditPoemBinding? = null
+    private var _binding: FragmentEditPoemBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,17 +40,17 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val poemId = args.PoemId
-        if (poemId > 0){
+        if (poemId > 0) {
             viewModel.fetchPoemToEdit(poemId).observe(
                 viewLifecycleOwner, Observer {
-                    if (it != null){
+                    if (it != null) {
                         binding.progress.isVisible = false
                         displayPoem(it)
                         viewModel.setEditedPoem(it)
                     }
                 }
             )
-        }else{
+        } else {
             binding.progress.isVisible = false
         }
 
@@ -74,7 +75,7 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
         )
     }
 
-    private fun displayPoem(poem  : Poems){
+    private fun displayPoem(poem: Poems) {
         binding.apply {
             poemTitleEt.setText(poem.title)
             poemSubjectEt.setText(poem.body)
@@ -84,11 +85,17 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
 
     /************ poems actions ****************/
     private var displayedSnackbar: Snackbar? = null
-    private fun dismissSnackBar(){
-        if (displayedSnackbar != null && displayedSnackbar!!.isShown)
+    private fun dismissSnackBar() {
+        if (displayedSnackbar != null && displayedSnackbar!!.isShown) {
             displayedSnackbar!!.dismiss()
+            displayedSnackbar = null
+        }
     }
-    private fun savePoem(){
+
+    private fun savePoem() {
+        hideKeyBoard(requireContext(), binding.container)
+        if (binding.progress.isVisible) return
+
         val title = binding.poemTitleEt.text.toString()
         val body = binding.poemSubjectEt.text.toString()
         when {
@@ -117,7 +124,6 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
     }
 
 
-
     /************* MENU **************/
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.poems_edit_menu, menu)
@@ -125,7 +131,7 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_save-> {
+            R.id.action_save -> {
                 savePoem()
                 true
             }
@@ -141,9 +147,10 @@ class PoemsAddEditFragment : Fragment(R.layout.fragment_edit_poem) {
         super.onPause()
         dismissSnackBar()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    
+
 }

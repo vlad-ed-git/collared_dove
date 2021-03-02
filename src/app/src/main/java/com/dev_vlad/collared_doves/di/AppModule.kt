@@ -25,37 +25,38 @@ object AppModule {
         app: Application,
         createCallback: CollaredDoveDb.CollaredDoveDbCreateCallback
     ): CollaredDoveDb {
-       return Room.databaseBuilder(
+        return Room.databaseBuilder(
             app.applicationContext,
             CollaredDoveDb::class.java,
             DATABASE_NAME
         )
             .fallbackToDestructiveMigration()
-           .addCallback(createCallback)
-           .build()
+            .addCallback(createCallback)
+            .build()
     }
 
     @Provides
     //dao-s are already singleton
-    fun providePoemsDao(db : CollaredDoveDb) : PoemsDao{
+    fun providePoemsDao(db: CollaredDoveDb): PoemsDao {
         return db.poemsDao()
     }
 
     @Provides
     @Singleton
-    fun providePoemsRepo(poemsDao: PoemsDao) : PoemsRepo{
+    fun providePoemsRepo(poemsDao: PoemsDao): PoemsRepo {
         return PoemsRepo(poemsDao)
     }
 
     @ApplicationScope
     @Provides
     @Singleton
-    fun provideAppCoroutineScope() : CoroutineScope{
+    fun provideAppCoroutineScope(): CoroutineScope {
         //supervisor job says keep other child running if one fails, do not cancel whole scope
         return CoroutineScope(SupervisorJob())
     }
 
 }
+
 //custom annotation to explicitly specify the scope of a coroutine
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier

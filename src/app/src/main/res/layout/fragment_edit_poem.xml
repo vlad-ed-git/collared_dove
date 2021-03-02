@@ -29,7 +29,10 @@
         android:id="@+id/poem_title_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:inputType="text"
+        android:maxLines="2"
         android:importantForAutofill="no"/>
 
     <ScrollView

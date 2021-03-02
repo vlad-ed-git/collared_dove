@@ -8,6 +8,4 @@ import javax.inject.Singleton
 
 @Singleton
 class CollaredDovesPrefMgr
-    @Inject constructor(@ApplicationContext context: Context){
-
-}
+@Inject constructor(@ApplicationContext context: Context)

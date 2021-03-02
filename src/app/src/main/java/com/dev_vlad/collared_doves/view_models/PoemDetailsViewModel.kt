@@ -9,14 +9,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PoemDetailsViewModel
-        @Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
+@Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
 
 
     fun fetchPoem(poemId: Int): LiveData<Poems?> {
-       return poemsRepo.getPoem(poemId)
+        return poemsRepo.getPoem(poemId)
     }
 
-    companion object{
+    companion object {
         private val TAG = PoemDetailsViewModel::class.java.simpleName
     }
 

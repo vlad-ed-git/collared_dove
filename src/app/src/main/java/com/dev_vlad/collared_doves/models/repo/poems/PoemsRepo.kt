@@ -10,7 +10,12 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
 
     private val MAX_POEMS_PER_PAGE = 30
 
-    fun getAllPoems(searchQuery: String, page: Int, onlyFavorites: Boolean, ofUserId: String): Flow<List<Poems>> {
+    fun getAllPoems(
+        searchQuery: String,
+        page: Int,
+        onlyFavorites: Boolean,
+        ofUserId: String
+    ): Flow<List<Poems>> {
 
         val pageNo = if (page < 1) 1 else page
         val limit = pageNo * MAX_POEMS_PER_PAGE
@@ -18,14 +23,18 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
             searchQuery.isNotBlank() -> {
                 when {
                     onlyFavorites -> poemsDao.searchMyFavorites(searchQuery, limit)
-                    ofUserId.isNotBlank() -> poemsDao.searchPoemsOfUser(searchQuery, limit, ofUserId)
+                    ofUserId.isNotBlank() -> poemsDao.searchPoemsOfUser(
+                        searchQuery,
+                        limit,
+                        ofUserId
+                    )
                     else -> poemsDao.searchAllPoems(searchQuery, limit)
                 }
             }
             else -> {
                 when {
                     onlyFavorites -> poemsDao.getMyFavorites(limit)
-                    ofUserId.isNotBlank() -> poemsDao.getMyPoems(limit, userId=ofUserId)
+                    ofUserId.isNotBlank() -> poemsDao.getMyPoems(limit, userId = ofUserId)
                     else -> poemsDao.getAllPoems(limit)
                 }
             }
@@ -42,6 +51,10 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
 
     suspend fun addPoem(newPoem: Poems) {
         poemsDao.insert(newPoem)
+    }
+
+    suspend fun deletePoem(poem: Poems) {
+        poemsDao.delete(poem)
     }
 
 }
