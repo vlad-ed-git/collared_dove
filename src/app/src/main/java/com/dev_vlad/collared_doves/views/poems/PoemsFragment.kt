@@ -1,9 +1,8 @@
 package com.dev_vlad.collared_doves.views.poems
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -32,6 +31,7 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPoemsBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         initAdapter()
         return binding.root
     }
@@ -69,6 +69,10 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
 
 
     /************ poems actions ****************/
+    fun onSearchTextQueryChange(queryString: String){
+        viewModel.searchPoems(queryString)
+    }
+
     override fun onClick(poemId: Int) {
         MyLogger.logThis(
             TAG, "onClick - override adapter item", " poem $poemId was clicked"
@@ -81,6 +85,36 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
         )
     }
 
+
+    /************* MENU **************/
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.poems_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.action_search -> {
+                val searchView  = item.actionView as SearchView
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        return true
+                    }
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        onSearchTextQueryChange(newText.orEmpty())
+                        return true
+                    }
+
+                })
+                return true
+            }
+
+           else -> {
+               return super.onOptionsItemSelected(item)
+           }
+        }
+
+    }
 
     /** Other life cycle methods **/
     override fun onDestroyView() {

@@ -6,4 +6,5 @@
     <string name="poem_title_lbl">Title</string>
     <string name="poem_subject_hint">some roses are red</string>
     <string name="poems_fragment_lbl">Collared Doves</string>
+    <string name="search_txt">Search</string>
 </resources>
