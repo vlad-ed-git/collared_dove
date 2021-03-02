@@ -6,9 +6,11 @@
     android:id="@+id/poem_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/std_space"
     android:checkable="true"
     android:focusable="true"
-    android:clickable="true">
+    android:clickable="true"
+    app:checkedIconTint="@color/card_icons_tint">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:fontFamily="@font/yanone_kaffeesatz"/>
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textColor="?attr/colorOnPrimary"/>
 
     <TextView
         android:id="@+id/poem_body"
@@ -34,8 +37,9 @@
         android:ellipsize="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:fontFamily="@font/lateef"/>
+        android:fontFamily="@font/lateef"
+        android:textColor="?attr/colorOnPrimary"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

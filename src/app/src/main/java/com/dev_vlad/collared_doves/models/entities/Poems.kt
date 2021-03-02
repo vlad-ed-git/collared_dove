@@ -16,7 +16,7 @@ data class Poems (
     val updated: Long = System.currentTimeMillis()
         ){
 
-    //for firebase 
+    //for firebase
     constructor() : this(
         poemId = 0,
         title = "",

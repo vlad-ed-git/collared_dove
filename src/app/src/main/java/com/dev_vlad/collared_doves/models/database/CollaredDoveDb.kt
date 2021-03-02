@@ -33,7 +33,7 @@ abstract class CollaredDoveDb : RoomDatabase() {
                     Poems(
                         poemId = 1,
                         title = "roses are red, make something new!",
-                        body = "roses are red, make something new\nso delete this now, though you can edit it too"
+                        body = "hold to select, or just click to view\nyours will be great, so make something new\nplease delete this now, though you can edit it too"
                     )
                 )
             }
