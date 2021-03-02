@@ -32,7 +32,7 @@ abstract class CollaredDoveDb : RoomDatabase() {
             appScope.launch {
                 poemsDao.insert(
                     Poems(
-                        writtenBy = "1",
+                        writtenBy = "2",
                         poemId = 1,
                         title = "roses are red, make something new!",
                         body = "hold to select, or just click to view\nyours will be great, so make something new\nplease delete this now, though you can edit it too"

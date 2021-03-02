@@ -21,4 +21,5 @@
     <string name="confirm_delete_poem">Delete this poem?</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="toggle_fav_menu_action_txt">Add or Remove Favorite</string>
 </resources>

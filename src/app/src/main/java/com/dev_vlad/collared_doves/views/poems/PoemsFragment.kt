@@ -185,7 +185,7 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
                 })
                 return true
             }
-            R.id.action_show_favorites -> {
+            R.id.action_toggle_fav -> {
                 item.isChecked = !item.isChecked
                 toggleFavoritesOnly(onlyFavs = item.isChecked)
                 return true

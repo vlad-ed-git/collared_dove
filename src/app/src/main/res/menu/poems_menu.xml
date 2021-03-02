@@ -17,7 +17,7 @@
         android:title="@string/show_my_poems_only_txt"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/action_show_favorites"
+    <item android:id="@+id/action_toggle_fav"
         android:checkable="true"
         android:title="@string/show_favorites_only_txt"
         app:showAsAction="never"/>

@@ -27,7 +27,7 @@ fun View.showSnackBarToUser(
     snackBar.view.setBackgroundColor(
         ContextCompat.getColor(
             this.context,
-            R.color.secondary_dark
+            R.color.primary
         )
     )
 
@@ -46,19 +46,19 @@ fun View.showSnackBarToUser(
             )
         )
     } else {
-        mainSnackBarTxt.setTextColor(ContextCompat.getColor(this.context, R.color.white))
-        actionTxt.setTextColor(ContextCompat.getColor(this.context, R.color.white))
+        mainSnackBarTxt.setTextColor(ContextCompat.getColor(this.context, R.color.accent))
+        actionTxt.setTextColor(ContextCompat.getColor(this.context, R.color.accent))
     }
 
     //set the font
-    ResourcesCompat.getFont(this.context, R.font.lateef)?.let {
+    ResourcesCompat.getFont(this.context, R.font.yanone_kaffeesatz)?.let {
         mainSnackBarTxt.typeface = it
         actionTxt.typeface = it
     }
 
     //set the size
     mainSnackBarTxt.textSize = 16.toFloat()
-    actionTxt.textSize = 16.toFloat()
+    actionTxt.textSize = 18.toFloat()
 
     //display snackbar
     if (actionMessage != null) {

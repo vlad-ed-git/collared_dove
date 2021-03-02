@@ -37,7 +37,13 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchPoem(args.PoemId).observe(viewLifecycleOwner, {
             if (it != null) {
+                viewModel.initPoem(it)
                 displayPoem(it)
+                if (::actionToggleFav.isInitialized){
+                    setFavIcon(it.isFavorite)
+                }else{
+                    pendingFavStatus = it.isFavorite
+                }
             }
         })
     }
@@ -51,7 +57,19 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
 
 
     /************ poems actions ****************/
-    private fun addOrEditPrompt() {
+    private fun toggleIsFavorite() {
+        viewModel.toggleIsFavorite()
+    }
+
+    private fun setFavIcon(isFavPoem : Boolean){
+        if (isFavPoem) {
+            actionToggleFav.setIcon(R.drawable.ic_favorite_filled)
+        }else{
+            actionToggleFav.setIcon(R.drawable.ic_favorite)
+        }
+    }
+
+    private fun editPoem() {
         //TODO when hook up with server, check if this poem is not user's own poem
         //TODO for now it is theirs...so this is an edit action
         val poemId = args.PoemId
@@ -61,14 +79,27 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
     }
 
     /************* MENU **************/
+    private lateinit var actionToggleFav : MenuItem
+    private var pendingFavStatus: Boolean? = null
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.poem_details_menu, menu)
+        actionToggleFav = menu.findItem(R.id.action_toggle_fav)
+        pendingFavStatus?.let {  
+            pendingFavState ->
+            setFavIcon(pendingFavState)
+            pendingFavStatus = null
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_add_or_edit -> {
-                addOrEditPrompt()
+            R.id.action_edit -> {
+                editPoem()
+                true
+            }
+
+            R.id.action_toggle_fav-> {
+                toggleIsFavorite()
                 true
             }
 
