@@ -1,10 +1,10 @@
 package com.dev_vlad.collared_doves.view_models
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.dev_vlad.collared_doves.models.entities.Poems
 import com.dev_vlad.collared_doves.models.repo.poems.PoemsRepo
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,16 +15,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PoemsViewModel
-@Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
+@Inject constructor(
+    private val poemsRepo: PoemsRepo,
+    private val stateHandle: SavedStateHandle) : ViewModel() {
 
     companion object {
         private val TAG = PoemsViewModel::class.java.simpleName
+        private const val POEMS_STORED_STATE_KEY = "poems_stored_state"
     }
 
-    private val currentPoemsState = MutableStateFlow(PoemsStateModifiers())
+    private val currentPoemsState = stateHandle.getLiveData<PoemsStateModifiers>( POEMS_STORED_STATE_KEY , PoemsStateModifiers())
+    private fun getCurrentPoemsState(): PoemsStateModifiers {
+        return currentPoemsState.value?:PoemsStateModifiers()
+    }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private val poemsFlow = currentPoemsState.flatMapLatest {
+    private val poemsFlow = currentPoemsState.asFlow().flatMapLatest {
         poemsRepo.getAllPoems(
             searchQuery = it.query,
             page = it.page,
@@ -36,7 +42,7 @@ class PoemsViewModel
     val poems = poemsFlow.asLiveData()
 
     fun searchPoems(queryString: String) {
-        val currentState = currentPoemsState.value
+        val currentState = getCurrentPoemsState()
         val newState = PoemsStateModifiers(
             page = currentState.page,
             query = queryString,
@@ -46,7 +52,7 @@ class PoemsViewModel
     }
 
     fun toggleFavoritesOnly(onlyFavs: Boolean) {
-        val currentState = currentPoemsState.value
+        val currentState = getCurrentPoemsState()
         val newState = PoemsStateModifiers(
             page = currentState.page,
             query = currentState.query,
@@ -56,7 +62,7 @@ class PoemsViewModel
     }
 
     fun toggleMineOnly(onlyMyPoems: Boolean) {
-        val currentState = currentPoemsState.value
+        val currentState = getCurrentPoemsState()
         val userId = if (onlyMyPoems) "1" else "" //TODO use actual users' id
         val newState = PoemsStateModifiers(
             page = currentState.page,

@@ -1,11 +1,9 @@
 package com.dev_vlad.collared_doves.view_models
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.dev_vlad.collared_doves.models.entities.Poems
 import com.dev_vlad.collared_doves.models.repo.poems.PoemsRepo
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,11 +13,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PoemsAddEditViewModel
-@Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
+@Inject constructor(
+    private val poemsRepo: PoemsRepo
+) : ViewModel() {
 
     companion object {
         private val TAG = PoemsAddEditViewModel::class.java.simpleName
     }
+
 
     fun fetchPoemToEdit(poemId: Int): LiveData<Poems?> {
         return poemsRepo.getPoem(poemId)
