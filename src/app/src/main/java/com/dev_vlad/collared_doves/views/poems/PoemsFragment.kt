@@ -17,6 +17,7 @@ import com.dev_vlad.collared_doves.models.entities.Poems
 import com.dev_vlad.collared_doves.utils.MyLogger
 import com.dev_vlad.collared_doves.view_models.PoemsViewModel
 import com.dev_vlad.collared_doves.views.adapters.PoemsAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -109,14 +110,14 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
 
     private fun deleteSwipedPoem(poem: Poems) {
         dismissPopUp()
-        popUp = AlertDialog.Builder(requireActivity())
-            .setMessage(R.string.confirm_delete_poem)
+        popUp = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.confirm_delete_poem)
             .setPositiveButton(R.string.delete,
                 DialogInterface.OnClickListener { dialog, _ ->
                     viewModel.deletePoem(poem)
                     dialog.dismiss()
                 })
-            .setNegativeButton(R.string.cancel,
+            .setNeutralButton(R.string.cancel,
                 DialogInterface.OnClickListener { dialog, _ ->
                     dialog.dismiss()
                 }).create()
@@ -126,14 +127,14 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
 
     private fun deleteSelectedPoems() {
         dismissPopUp()
-        popUp = AlertDialog.Builder(requireActivity())
-            .setMessage(R.string.confirm_delete_poem)
+        popUp = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.confirm_delete_poem)
             .setPositiveButton(R.string.delete,
                 DialogInterface.OnClickListener { dialog, _ ->
                     viewModel.deleteSelectedPoems()
                     dialog.dismiss()
                 })
-            .setNegativeButton(R.string.cancel,
+            .setNeutralButton(R.string.cancel,
                 DialogInterface.OnClickListener { dialog, _ ->
                     dialog.dismiss()
                 }).create()
