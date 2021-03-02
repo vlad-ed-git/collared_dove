@@ -22,8 +22,7 @@
             android:id="@+id/poem_subject"
             android:gravity="start|top"
             android:fontFamily="@font/lateef"
-            android:textColor="?attr/colorOnPrimary"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </ScrollView>

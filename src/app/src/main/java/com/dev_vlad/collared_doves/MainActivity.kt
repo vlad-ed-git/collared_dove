@@ -58,6 +58,13 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+                R.id.poemsAddEditFragment -> {
+                    binding.apply {
+                        toolbar.isVisible = true
+                        toolbar.title = getString(R.string.fragment_edit_poem_lbl)
+                    }
+                }
+
                 else -> {
                     binding.toolbar.isVisible = true
                 }

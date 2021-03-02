@@ -64,6 +64,10 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
             poemsRv.adapter = poemsAdapter
             poemsRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             poemsRv.setHasFixedSize(true)
+            writeFab.setOnClickListener {
+                val action = PoemsFragmentDirections.actionPoemsFragmentToPoemsAddEditFragment()
+                findNavController().navigate(action)
+            }
         }
     }
 

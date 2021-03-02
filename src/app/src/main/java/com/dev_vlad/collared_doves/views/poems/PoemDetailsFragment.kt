@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dev_vlad.collared_doves.R
 import com.dev_vlad.collared_doves.databinding.FragmentPoemDetailsBinding
@@ -54,7 +55,11 @@ class PoemDetailsFragment : Fragment(R.layout.fragment_poem_details) {
 
     /************ poems actions ****************/
     private fun addOrEditPrompt(){
-
+        //TODO when hook up with server, check if this poem is not user's own poem
+        //TODO for now it is theirs...so this is an edit action
+        val poemId = args.PoemId
+        val action = PoemDetailsFragmentDirections.actionPoemDetailsFragmentToPoemsAddEditFragment(poemId)
+        findNavController().navigate(action)
     }
 
     /************* MENU **************/

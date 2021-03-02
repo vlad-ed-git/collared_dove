@@ -4,11 +4,17 @@
     <string name="toolbar_bg_img_desc">collared doves image</string>
     <string name="click_to_write_new_poem">click to write new poem</string>
     <string name="poem_title_lbl">Title</string>
-    <string name="poem_subject_hint">some roses are red</string>
+    <string name="poem_subject_hint">…</string>
     <string name="poems_fragment_lbl">Collared Doves</string>
     <string name="search_txt">Search</string>
     <string name="show_favorites_only_txt">Show favorites only</string>
     <string name="show_my_poems_only_txt">My Poems</string>
     <string name="edit_poem_menu_action_txt">Edit</string>
     <string name="fragment_poem_details_lbl">Collared Dove</string>
+    <string name="fragment_edit_poem_lbl">My Poem</string>
+    <string name="save_txt">save</string>
+    <string name="title_empty_err">A title is missing</string>
+    <string name="got_it">Got it!</string>
+    <string name="body_empty_err">The poem is blank</string>
+    <string name="poem_saved">Saved!</string>
 </resources>

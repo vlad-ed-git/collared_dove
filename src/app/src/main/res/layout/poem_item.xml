@@ -38,8 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lateef"
-        android:textColor="?attr/colorOnPrimary"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+        android:textSize="24sp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

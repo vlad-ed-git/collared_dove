@@ -36,4 +36,12 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
         return poemsDao.getPoemById(poemId)
     }
 
+    suspend fun updatePoem(editedPoem: Poems) {
+        poemsDao.update(editedPoem)
+    }
+
+    suspend fun addPoem(newPoem: Poems) {
+        poemsDao.insert(newPoem)
+    }
+
 }

@@ -7,7 +7,7 @@ import java.text.DateFormat
 @Entity(tableName = "poems")
 data class Poems (
     @PrimaryKey(autoGenerate = true)
-        val poemId : Int,
+        val poemId : Int = 0,
     val writtenBy : String,
     val title : String,
     val body : String,

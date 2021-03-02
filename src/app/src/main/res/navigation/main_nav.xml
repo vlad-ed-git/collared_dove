@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_poemsFragment_to_poemDetailsFragment"
             app:destination="@id/poemDetailsFragment" />
+        <action
+            android:id="@+id/action_poemsFragment_to_poemsAddEditFragment"
+            app:destination="@id/poemsAddEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/poemDetailsFragment"
@@ -21,5 +24,18 @@
         <argument
             android:name="PoemId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_poemDetailsFragment_to_poemsAddEditFragment"
+            app:destination="@id/poemsAddEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/poemsAddEditFragment"
+        android:name="com.dev_vlad.collared_doves.views.poems.PoemsAddEditFragment"
+        android:label="@string/fragment_edit_poem_lbl"
+        tools:layout="@layout/fragment_edit_poem" >
+        <argument
+            android:name="PoemId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>
