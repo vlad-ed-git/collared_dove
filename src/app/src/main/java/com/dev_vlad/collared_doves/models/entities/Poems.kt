@@ -7,20 +7,20 @@ import kotlinx.parcelize.Parcelize
 import java.text.DateFormat
 
 @Entity(tableName = "poems")
-@Parcelize
 data class Poems (
-        @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
         val poemId : Int,
-        val title : String,
-        val subTitle : String,
-        val created: Long = System.currentTimeMillis(),
-        val updated: Long = System.currentTimeMillis()
-        ) : Parcelable{
+    val title : String,
+    val body : String,
+    val created: Long = System.currentTimeMillis(),
+    val updated: Long = System.currentTimeMillis()
+        ){
 
+    //for firebase 
     constructor() : this(
         poemId = 0,
         title = "",
-        subTitle = ""
+        body = ""
     )
 
     val createdDateFormatted : String
