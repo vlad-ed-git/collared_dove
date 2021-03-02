@@ -18,7 +18,7 @@ class PoemsViewModel
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val poemsFlow = currentPoemsState.flatMapLatest {
-        poemsRepo.getAllPoems(searchQuery = it.query, page = it.page)
+        poemsRepo.getAllPoems(searchQuery = it.query, page = it.page, onlyFavorites = it.isFavorite, ofUserId = it.ofUserId)
     }
 
     val poems = poemsFlow.asLiveData()
@@ -27,14 +27,39 @@ class PoemsViewModel
        val currentState = currentPoemsState.value
         val newState = PoemsStateModifiers(
             page = currentState.page,
-            query = queryString
+            query = queryString,
+            isFavorite = currentState.isFavorite
         )
        currentPoemsState.value = newState
+    }
+
+    fun toggleFavoritesOnly(onlyFavs: Boolean) {
+        val currentState = currentPoemsState.value
+        val newState = PoemsStateModifiers(
+            page = currentState.page,
+            query = currentState.query,
+            isFavorite = onlyFavs
+        )
+        currentPoemsState.value = newState
+    }
+
+    fun toggleMineOnly(onlyMyPoems: Boolean) {
+        val currentState = currentPoemsState.value
+        val userId = if (onlyMyPoems) "1" else "" //TODO use actual users' id
+        val newState = PoemsStateModifiers(
+            page = currentState.page,
+            query = currentState.query,
+            isFavorite = currentState.isFavorite,
+            ofUserId = userId
+        )
+        currentPoemsState.value = newState
     }
 
 }
 
 data class PoemsStateModifiers(
-    var page : Int = 1,
-    var query: String = ""
+    val page : Int = 1,
+    val query: String = "",
+    val isFavorite : Boolean = false,
+    val ofUserId : String = "",
 )

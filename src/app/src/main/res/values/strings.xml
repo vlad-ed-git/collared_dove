@@ -7,4 +7,6 @@
     <string name="poem_subject_hint">some roses are red</string>
     <string name="poems_fragment_lbl">Collared Doves</string>
     <string name="search_txt">Search</string>
+    <string name="show_favorites_only_txt">Show favorites only</string>
+    <string name="show_my_poems_only_txt">My Poems</string>
 </resources>

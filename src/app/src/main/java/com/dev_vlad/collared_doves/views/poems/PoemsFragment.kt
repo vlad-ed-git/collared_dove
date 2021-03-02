@@ -5,7 +5,6 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dev_vlad.collared_doves.R
 import com.dev_vlad.collared_doves.databinding.FragmentPoemsBinding
@@ -40,7 +39,7 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
         super.onViewCreated(view, savedInstanceState)
         viewModel.poems.observe(
             viewLifecycleOwner,
-            Observer {
+           {
                 if (it != null) {
                     poemsAdapter.submitList(it)
                     MyLogger.logThis(
@@ -69,6 +68,13 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
 
 
     /************ poems actions ****************/
+    private fun toggleMineOnly(onlyMyPoems: Boolean) {
+        viewModel.toggleMineOnly(onlyMyPoems)
+    }
+    private fun toggleFavoritesOnly(onlyFavs: Boolean) {
+        viewModel.toggleFavoritesOnly(onlyFavs)
+    }
+
     fun onSearchTextQueryChange(queryString: String){
         viewModel.searchPoems(queryString)
     }
@@ -92,7 +98,7 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.action_search -> {
                 val searchView  = item.actionView as SearchView
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -108,13 +114,26 @@ class PoemsFragment : Fragment(R.layout.fragment_poems), PoemsAdapter.ActionsLis
                 })
                 return true
             }
+            R.id.action_show_favorites -> {
+                item.isChecked = !item.isChecked
+                toggleFavoritesOnly(onlyFavs = item.isChecked)
+                return true
+            }
 
-           else -> {
-               return super.onOptionsItemSelected(item)
-           }
+            R.id.action_show_mine -> {
+                item.isChecked = !item.isChecked
+                toggleMineOnly(onlyMyPoems = item.isChecked)
+                return true
+            }
+
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
         }
 
     }
+
+
 
     /** Other life cycle methods **/
     override fun onDestroyView() {

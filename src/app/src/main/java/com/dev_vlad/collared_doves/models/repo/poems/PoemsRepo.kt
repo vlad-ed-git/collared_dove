@@ -9,15 +9,26 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
 
     private val MAX_POEMS_PER_PAGE = 30
 
-    fun getAllPoems(searchQuery: String, page : Int): Flow<List<Poems>> {
+    fun getAllPoems(searchQuery: String, page: Int, onlyFavorites: Boolean, ofUserId: String): Flow<List<Poems>> {
 
         val pageNo = if (page < 1) 1 else page
         val limit = pageNo * MAX_POEMS_PER_PAGE
-        return if (searchQuery.isNotBlank())
-            poemsDao.searchAllPoems(searchQuery, page)
-        else
-            poemsDao.getAllPoems(limit)
-
+        return when {
+            searchQuery.isNotBlank() -> {
+                when {
+                    onlyFavorites -> poemsDao.searchMyFavorites(searchQuery, limit)
+                    ofUserId.isNotBlank() -> poemsDao.searchPoemsOfUser(searchQuery, limit, ofUserId)
+                    else -> poemsDao.searchAllPoems(searchQuery, limit)
+                }
+            }
+            else -> {
+                when {
+                    onlyFavorites -> poemsDao.getMyFavorites(limit)
+                    ofUserId.isNotBlank() -> poemsDao.getMyPoems(limit, userId=ofUserId)
+                    else -> poemsDao.getAllPoems(limit)
+                }
+            }
+        }
     }
 
 }
