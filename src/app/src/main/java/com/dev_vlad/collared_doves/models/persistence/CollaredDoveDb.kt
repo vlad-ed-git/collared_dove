@@ -1,4 +1,4 @@
-package com.dev_vlad.collared_doves.models.database
+package com.dev_vlad.collared_doves.models.persistence
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

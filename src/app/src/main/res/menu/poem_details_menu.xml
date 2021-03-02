@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_add_or_edit"
+         android:icon="@drawable/ic_feather"
+        android:title="@string/edit_poem_menu_action_txt"
+        app:showAsAction="ifRoom" />
+</menu>

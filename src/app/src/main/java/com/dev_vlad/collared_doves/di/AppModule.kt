@@ -2,10 +2,9 @@ package com.dev_vlad.collared_doves.di
 
 import android.app.Application
 import androidx.room.Room
-import com.dev_vlad.collared_doves.CollaredDovesApp
 import com.dev_vlad.collared_doves.models.dao.PoemsDao
-import com.dev_vlad.collared_doves.models.database.CollaredDoveDb
-import com.dev_vlad.collared_doves.models.database.DATABASE_NAME
+import com.dev_vlad.collared_doves.models.persistence.CollaredDoveDb
+import com.dev_vlad.collared_doves.models.persistence.DATABASE_NAME
 import com.dev_vlad.collared_doves.models.repo.poems.PoemsRepo
 import dagger.Module
 import dagger.Provides

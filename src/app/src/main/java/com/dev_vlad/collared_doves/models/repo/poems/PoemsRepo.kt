@@ -1,5 +1,6 @@
 package com.dev_vlad.collared_doves.models.repo.poems
 
+import androidx.lifecycle.LiveData
 import com.dev_vlad.collared_doves.models.dao.PoemsDao
 import com.dev_vlad.collared_doves.models.entities.Poems
 import kotlinx.coroutines.flow.Flow
@@ -29,6 +30,10 @@ class PoemsRepo(private val poemsDao: PoemsDao) {
                 }
             }
         }
+    }
+
+    fun getPoem(poemId: Int): LiveData<Poems?> {
+        return poemsDao.getPoemById(poemId)
     }
 
 }

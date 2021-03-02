@@ -9,4 +9,6 @@
     <string name="search_txt">Search</string>
     <string name="show_favorites_only_txt">Show favorites only</string>
     <string name="show_my_poems_only_txt">My Poems</string>
+    <string name="edit_poem_menu_action_txt">Edit</string>
+    <string name="fragment_poem_details_lbl">Collared Dove</string>
 </resources>

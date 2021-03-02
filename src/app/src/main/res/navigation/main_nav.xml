@@ -8,5 +8,18 @@
         android:id="@+id/poemsFragment"
         android:name="com.dev_vlad.collared_doves.views.poems.PoemsFragment"
         android:label="@string/poems_fragment_lbl"
-        tools:layout="@layout/fragment_poems" />
+        tools:layout="@layout/fragment_poems" >
+        <action
+            android:id="@+id/action_poemsFragment_to_poemDetailsFragment"
+            app:destination="@id/poemDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/poemDetailsFragment"
+        android:name="com.dev_vlad.collared_doves.views.poems.PoemDetailsFragment"
+        android:label="@string/fragment_poem_details_lbl"
+        tools:layout="@layout/fragment_poem_details" >
+        <argument
+            android:name="PoemId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

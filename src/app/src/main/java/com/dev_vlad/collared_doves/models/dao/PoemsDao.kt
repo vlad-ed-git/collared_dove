@@ -1,5 +1,6 @@
 package com.dev_vlad.collared_doves.models.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.dev_vlad.collared_doves.models.entities.Poems
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +24,9 @@ interface PoemsDao {
     @Update
     suspend fun update(poem: Poems)
 
+    @Query("SELECT * FROM poems WHERE poemId =:poemId ")
+    fun getPoemById(poemId: Int): LiveData<Poems?>
+
 
     //favorites
     @Query("SELECT * FROM poems WHERE isFavorite =:isFavorite  AND title LIKE '%' || :searchQuery || '%' OR body LIKE '%' || :searchQuery || '%'  ORDER BY updated DESC LIMIT :limit")
@@ -38,4 +42,5 @@ interface PoemsDao {
 
     @Query("SELECT * FROM poems WHERE  writtenBy =:userId ORDER BY updated DESC LIMIT :limit")
     fun getMyPoems(limit: Int, userId: String): Flow<List<Poems>>
+
 }

@@ -13,6 +13,9 @@ import javax.inject.Inject
 class PoemsViewModel
     @Inject constructor(private val poemsRepo: PoemsRepo) : ViewModel() {
 
+    companion object{
+        private val TAG = PoemsViewModel::class.java.simpleName
+    }
 
     private val currentPoemsState = MutableStateFlow(PoemsStateModifiers())
 
