@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".views.poems.PoemsAddEditFragment"
+    android:id="@+id/container"
+    android:padding="@dimen/md_space">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_marginBottom="@dimen/std_space"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/poem_title_lbl"
+        android:text="@string/poem_title_lbl"
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:labelFor="@id/poem_title_et"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/poem_title_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:inputType="text"
+        android:maxLines="2"
+        android:importantForAutofill="no"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/poem_subject_et"
+        android:padding="@dimen/std_space"
+        android:gravity="start|top"
+        android:fontFamily="@font/lateef"
+        android:textSize="24sp"
+        android:hint="@string/poem_subject_hint"
+        android:minHeight="600dp"
+        android:inputType="textMultiLine"
+        android:importantForAutofill="no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </ScrollView>
+</LinearLayout>

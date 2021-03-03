@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".views.poems.PoemDetailsFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/poem_title"
+        android:fontFamily="@font/yanone_kaffeesatz"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_margin="@dimen/md_space"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/md_space">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/poem_subject"
+            android:gravity="start|top"
+            android:fontFamily="@font/lateef"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+</LinearLayout>

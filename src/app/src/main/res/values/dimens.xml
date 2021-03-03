@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="md_space">16dp</dimen>
+    <dimen name="expanded_app_bar_height">152dp</dimen>
+    <dimen name="std_space">8dp</dimen>
+    <dimen name="clickable_std">48dp</dimen>
+</resources>

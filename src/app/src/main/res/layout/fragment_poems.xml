@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.poems.PoemsFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/poems_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|top"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/write_fab"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/md_space"
+        android:src="@drawable/ic_feather"
+        app:backgroundTint="?attr/colorPrimary"
+        android:tint="?colorOnPrimary"
+        android:tintMode="multiply"
+        app:rippleColor="@color/accent"
+        android:contentDescription="@string/click_to_write_new_poem"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
