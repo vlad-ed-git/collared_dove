@@ -1,5 +1,6 @@
 package com.dev_vlad.collared_doves.view_models
 
+import android.os.Parcelable
 import androidx.lifecycle.*
 import com.dev_vlad.collared_doves.models.entities.Poems
 import com.dev_vlad.collared_doves.models.repo.poems.PoemsRepo
@@ -11,6 +12,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @HiltViewModel
@@ -104,9 +106,10 @@ class PoemsViewModel
 
 }
 
+@Parcelize
 data class PoemsStateModifiers(
     val page: Int = 1,
     val query: String = "",
     val isFavorite: Boolean = false,
     val ofUserId: String = "",
-)
+): Parcelable
