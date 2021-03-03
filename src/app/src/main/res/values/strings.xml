@@ -25,6 +25,6 @@
     <string name="share_menu_action_txt">Share</string>
 
     <string name="app_logo">app logo</string>
-    <string name="fav_icon_attribution">App Developed By Vladimir Peter\nIcons made by Freepik from www.flaticon.com</string>
+    <string name="terms_n_attribution">App Developed By Vladimir Peter\nIcons made by Freepik from www.flaticon.com\nClick to review our terms &amp; conditions</string>
     <string name="fragment_about_lbl">About Collared Doves</string>
 </resources>
